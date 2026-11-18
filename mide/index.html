@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mide – Organlarımızı Tanıyalım</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{font-family:Nunito,-apple-system,'Segoe UI',sans-serif;background:#FBF4EC;color:#2B2420;
+display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:32px 24px;text-align:center;min-height:100vh}
+.k{margin:0;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#8A6F63}
+h1{margin:0 0 20px;font-size:clamp(40px,12vw,56px);font-weight:800;line-height:1}
+.btn{width:168px;height:168px;border-radius:50%;border:0;background:#D97757;box-shadow:0 14px 40px rgba(217,119,87,.45);
+display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .1s}
+.btn:active{transform:scale(.95)}.btn svg{width:64px;height:64px;fill:#fff}
+.btn.playing{background:#C9613F}
+.l{margin:16px 0 0;font-size:20px;font-weight:800}.s{margin:0;font-size:14px;color:#8A6F63}
+video{width:100%;max-width:420px;border-radius:20px;background:#000}
+</style></head>
+<body>
+<p class="k">Organlarımızı Tanıyalım</p>
+<h1>Mide</h1>
+<button class="btn" id="b" aria-label="Sesi oynat"><svg viewBox="0 0 44 44"><path d="M14 9 L34 22 L14 35 Z"/></svg></button>
+<p class="l" id="t">Dinlemek için dokun</p>
+<p class="s" id="d">0:19</p>
+<audio id="a" src="ses.mp3" preload="auto"></audio>
+<script>
+var a=document.getElementById('a'),b=document.getElementById('b'),t=document.getElementById('t');
+var P='<svg viewBox="0 0 44 44"><path d="M14 9 L34 22 L14 35 Z"/></svg>',S='<svg viewBox="0 0 44 44"><rect x="12" y="9" width="7" height="26" rx="2"/><rect x="25" y="9" width="7" height="26" rx="2"/></svg>';
+function tog(){if(a.paused){a.play();}else{a.pause();}}
+b.addEventListener('click',tog);
+document.body.addEventListener('click',function(e){if(e.target===document.body)tog();});
+a.addEventListener('play',function(){b.innerHTML=S;b.classList.add('playing');t.textContent='Dinleniyor…';});
+a.addEventListener('pause',function(){b.innerHTML=P;b.classList.remove('playing');t.textContent='Devam etmek için dokun';});
+a.addEventListener('ended',function(){b.innerHTML=P;b.classList.remove('playing');t.textContent='Tekrar dinlemek için dokun';a.currentTime=0;});
+</script>
+</body></html>
